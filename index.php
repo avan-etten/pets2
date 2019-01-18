@@ -21,6 +21,8 @@ $f3->route('GET /order', function() {
     echo $view->render('views/form1.html');
 });
 
+
+
 //Define a route that accepts a parameter for animal type
 $f3->route('GET /@animal', function($f3, $params)
 {
