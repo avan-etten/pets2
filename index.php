@@ -26,7 +26,8 @@ $f3->route('GET /order', function() {
 //Define a route that accepts a parameter for animal type
 $f3->route('GET /@animal', function($f3, $params)
 {
-    switch ($params['animal'])
+    $petChoice = $params['animal'];
+    switch ($petChoice)
     {
         case 'dog':
             echo 'Woof!';
@@ -47,7 +48,12 @@ $f3->route('GET /@animal', function($f3, $params)
             echo $f3->error(404);
     }
 
-});
 
+
+
+
+
+
+});
 
 $f3->run();
