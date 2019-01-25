@@ -21,21 +21,22 @@ $f3->route('GET /order', function() {
     echo $view->render('views/form1.html');
 });
 
-$f3->route('POST /order2', function() {
+$f3->route('POST /order2', function($f3) {
+    $f3->set('SESSION.animal', $f3->get('POST.animal'));
     $view = new View;
     echo $view->render('views/form2.html');
 });
 
-$f3->route('POST /results', function() {
-    $view = new View;
-    echo $view->render('views/results.html');
+$f3->route('POST /results', function($f3) {
+    $f3->set('SESSION.color', $f3->get('POST.color'));
+    $template = new Template;
+    echo $template->render('views/results.html');
 });
 
 //Define a route that accepts a parameter for animal type
 $f3->route('POST /@animal', function($f3, $params)
 {
-    $petChoice = $params['animal'];
-    switch ($petChoice)
+    switch ($params['animal'])
     {
         case 'dog':
             echo 'Woof!';
@@ -56,12 +57,7 @@ $f3->route('POST /@animal', function($f3, $params)
             echo $f3->error(404);
     }
 
-
-
-
-
-
-
 });
+
 
 $f3->run();
