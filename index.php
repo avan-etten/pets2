@@ -1,6 +1,9 @@
 <?php
-ini_set('display_errors', 1);
+//turn on error reporting
 error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+
+//require autoload
 require_once "vendor/autoload.php";
 /**
  * Created by PhpStorm.
@@ -8,23 +11,28 @@ require_once "vendor/autoload.php";
  * Date: 1/9/2019
  * Time: 10:05 AM
  */
-
+//create an instance of the base class
 $f3 = Base::instance();
+
+//set debug level
+$f3->set('DEBUG', 3);
+
+$f3->set('colors', array('pink','green','blue'));
 
 $f3->route('GET /', function() {
     echo "<h1>My Pets</h1>";
     echo "<a href='order'>Order a Pet</a>";
 });
 
-$f3->route('GET /order', function() {
+$f3->route('GET|POST /order', function() {
     $view = new View;
     echo $view->render('views/form1.html');
 });
 
-$f3->route('POST /order2', function($f3) {
+$f3->route('GET|POST /order2', function($f3) {
     $f3->set('SESSION.animal', $f3->get('POST.animal'));
-    $view = new View;
-    echo $view->render('views/form2.html');
+    $template = new Template();
+    echo $template->render('views/form2.html');
 });
 
 $f3->route('POST /results', function($f3) {
@@ -34,7 +42,7 @@ $f3->route('POST /results', function($f3) {
 });
 
 //Define a route that accepts a parameter for animal type
-$f3->route('POST /@animal', function($f3, $params)
+$f3->route('GET /@animal', function($f3, $params)
 {
     switch ($params['animal'])
     {
@@ -58,6 +66,5 @@ $f3->route('POST /@animal', function($f3, $params)
     }
 
 });
-
 
 $f3->run();
