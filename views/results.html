@@ -5,7 +5,16 @@
     <title>Results</title>
 </head>
 <body>
-    <h1>Thank you!</h1>
-    <p>Animal Ordered: A {{ @SESSION.color }} {{ @SESSION.animal }}</p>
+    <h3>Results page</h3>
+    <p>Thank you for ordering a {{ @SESSION['color'] }} {{ @SESSION['animal'] }}!</p>
+
+    <div class="col-sm-3">
+        <check if="{{isset(@errors['color'])}}">
+            <p>{{@errors['color'}}</p>
+        </check>
+        <select class="form-control" name="color">
+            ...
+        </select>
+    </div>
 </body>
 </html>
