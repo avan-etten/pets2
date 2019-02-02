@@ -15,7 +15,7 @@
     </check>
     <select class="form-control" name="color">
         <option>--Select--</option>
-        <repeat group="{{@colors}}" value="{{@colorOption}}">
+        <repeat group="{{@colors}}" value="<?php echo'{{@colorOption}}'?> ">
             <option>
                 <check if="{{@colorOption == @color}}">selected</check>
                 {{@colorOption}}
@@ -25,11 +25,7 @@
     </select>
 </div>
 
-
-
-
-
-<!--<form method="post" action="results">
+<form method="post" action="#">
     <label>Select A Color</label>
     <select name="color">
         <option>--Select a color--</option>
@@ -38,7 +34,7 @@
         </repeat>
     </select>
     <button type="submit">Submit</button>
-</form>-->
+</form>
 
 </body>
 </html>

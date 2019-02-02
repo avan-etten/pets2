@@ -28,7 +28,14 @@ function validString($animal)
         {
             return true;
         }
-        false;
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
     }
 }
 

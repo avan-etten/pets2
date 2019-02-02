@@ -68,7 +68,7 @@ $f3->route('GET|POST /order2',
 
     //$f3->set('SESSION.animal', $f3->get('POST.animal'));
     $template = new Template();
-    echo $template->render('views/form2.html');
+    echo $template->render('views/form2.php');
 });
 
 $f3->route('POST /results', function($f3) {
